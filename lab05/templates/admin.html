@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="admin">
+    <head>
+        <title>Administrator</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/admin.css">
+        <link type="text/javascript" href="../static/js/admin.js">
+    </head>
+    <body>
+        <h1>Management</h1>
+        <form action="/">
+            <select>
+                    <option value ="Teacher">Teacher</option>
+                    <option value ="Student">Student</option>
+            </select>
+            <input type="text" name="number" placeholder="ID No.">
+            <input type="text" name="user name" placeholder="User name">
+            <input type="text" name="phone_num" placeholder="Phone No.">
+            privilege: 
+            <input type="checkbox" id="radio" name="privilege">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="button" id="add"></button>
+          </form> 
+          
+        <h1>Teachers</h1>
+        <table class="rwd-table">
+            <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Password</th>
+            <th>Phone No.</th>
+            <th>Privilege</th>
+            </tr>
+            <tr>
+            <td data-th="number">0000</td>
+            <td data-th="user name">Adventure</td>
+            <td data-th="Password">wsdfgyuik</td>
+            <td data-th="phone_num">123456789</td>
+            <td data-th="privilege">
+                <input type="checkbox" id="radio" name="switch">
+            </td>
+            </tr>
+        </table>
+        <h1>Students</h1>
+        <table class="rwd-table">
+            <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Password</th>
+            <th>Phone No.</th>
+            <th>Privilege</th>
+            </tr>
+            </tr>
+            <tr>
+            <td data-th="number">5678</td>
+            <td data-th="user name">Candy</td>
+            <td data-th="Password">wsdfgyuik</td>
+            <td data-th="phone_num">123456789</td>
+            <td data-th="privilege">
+                <input type="checkbox" id="radio" name="switch">
+            </td>
+            </tr>
+            <tr>
+            <td data-th="number">1234</td>
+            <td data-th="user name">Drama</td>
+            <td data-th="Password">wsdfgyuik</td>
+            <td data-th="phone_num">123456789</td>
+            <td data-th="privilege">
+                <input type="checkbox" id="radio" name="switch">
+            </td>
+            </tr>
+        </table>
+        <p>&larr; Some Information Can Add Here. &rarr;</p>
+    </body>
+</html>

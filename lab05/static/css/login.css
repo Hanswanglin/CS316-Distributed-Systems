@@ -1,0 +1,32 @@
+body{
+    text-align:center;
+}
+.login_ico {
+    margin: 5em auto;
+}
+.login_putin form input{
+	width:40%;
+	margin: 1em auto 0 auto;
+	padding: 1em 1em 1em 1.4em;
+	-webkit-border-radius:.3em;
+	-moz-border-radius: .3em;
+    border: 1px solid #999;
+}
+.login_btn{
+    margin: auto;
+    width:100%;
+}
+.login_btn input{
+    width:100%;
+    text-align: center;
+	padding:.5em 0;
+	-webkit-border-radius:.3em;
+	-moz-border-radius: .3em;
+	border:#006B7B solid 1px;
+	background:#00A6BF;
+	color:#FFF;
+	font-size:17px;
+}
+.login_btn input:hover{
+	background:#006B7B;
+}

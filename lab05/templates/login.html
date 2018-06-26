@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- login page -->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/css/login.css" type="text/css" rel="stylesheet">
+        <title>login-page</title>
+        <link rel="shortcut icon" href="../static/images/favicon.png">
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="login_ico">
+                <img src="../static/images/login_ico.png">	
+            </div>
+            <!-- 登录密码或者账号错误会返回的信息，没有选择角色会返回的提示信息 -->
+            {% if message %}
+                <p style="color:rgb(57, 90, 201)">{{ message }}</p>
+            {% endif %}
+            <div class="login_putin">
+                <form action="/login/" method="post">
+                    Choose the role:
+                    <br>
+                    <label><input name="roles" type="radio" value="Admin" />Administrator </label>
+                    <label><input name="roles" type="radio" value="Teacher" />Teacher </label>
+                    <label><input name="roles" type="radio" value="Student" />Student </label>
+                    <br>
+                    <input type="text" name="username" placeholder="Username">
+                    <br>
+                    <input type="password" name="password" placeholder="Password">
+                    <div class="login_btn">
+                        <input type="submit" name="submit_button" value="sign in">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
