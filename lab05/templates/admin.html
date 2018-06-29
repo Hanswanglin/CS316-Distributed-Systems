@@ -3,16 +3,11 @@
     <head>
         <title>Administrator</title>
         <link rel="stylesheet" type="text/css" href="../static/css/admin.css">
-        <link type="text/javascript" href="../static/js/admin.js">
-        <script type="text/javascript">
-            function showteacher(teacher_id,teacher_name,phone_num,teacher_password){
-                $('.rwd-table').modal('show');
-                $(".number").val(teacher_id);
-                $(".user_name").val(teacher_name);
-                $(".Password").val(teacher_password);
-                $(".phone_num").val(phone_num);
-            }
-        </script>
+{#        <link type="text/javascript" href="../static/js/admin.js">#}
+        <link rel="shortcut icon" href="../static/images/favicon.png">
+        <script type="text/javascript" src="{{ url_for('static', filename='js/admin.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
     </head>
     <body>
         <h1>Management</h1>
@@ -29,7 +24,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button class="button" id="add">ADD</button>
           </form> 
-          
+{#          teacher#}
         <h1>Teachers</h1>
         <table class="rwd-table">
             <tr>
@@ -40,19 +35,27 @@
             <th>Privilege</th>
             <th>Delete</th>
             </tr>
+            {% for value in teacher_info.items() %}
             <tr>
-            <td data-th="number">0000</td>
-            <td data-th="user_name">Adventure</td>
-            <td data-th="Password">wsdfgyuik</td>
-            <td data-th="phone_num">123456789</td>
-            <td data-th="privilege">
-                <input type="checkbox" id="radio" name="switch">
-            </td>
-            <td data-th="privilege">
-                <button id="delete">Delete</button>
-            </td>
+                <td data-th="number"><input class="{{ value[0] }}" value="{{ value[0] }}"></td>
+                <td data-th="user_name"><input class="{{ value[0] }}" value="{{ value[1] }}"></td>
+                <td data-th="Password"><input class="{{ value[0] }}" value="{{ value[2] }}"></td>
+                <td data-th="phone_num"><input class="{{ value[0] }}" value="{{ value[3] }}"></td>
+
+                <td data-th="privilege">
+                    {% if value[4] == 1 %}
+                    <input type="checkbox" id="radio" name="switch" class="{{ value[0] }}" checked="{{ value }}">
+                    {% else %}
+                    <input type="checkbox" id="radio" name="switch" class="{{ value[0] }}" />
+                    {% endif %}
+                </td>
+                <td data-th="privilege">
+                    <button id="delete">Delete</button>
+                </td>
             </tr>
+            {% endfor %}
         </table>
+{#        student#}
         <h1>Students</h1>
         <table class="rwd-table">
             <tr>
@@ -63,31 +66,28 @@
             <th>Privilege</th>
             <th>Delete</th>
             </tr>
-            </tr>
+
+            {% for value in teacher_info.items() %}
             <tr>
-            <td data-th="number"></td>
-            <td data-th="user_name"></td>
-            <td data-th="Password"></td>
-            <td data-th="phone_num"></td>
-            <td data-th="privilege">
-                <input type="checkbox" id="radio" name="switch">
-            </td>
-            <td data-th="Delete">
-                <button id="delete">Delete</button>
-            </td>
+                <td data-th="number"><input class="{{ value[0] }}" value="{{ value[0] }}"></td>
+                <td data-th="user_name"><input class="{{ value[0] }}" value="{{ value[1] }}"></td>
+                <td data-th="Password"><input class="{{ value[0] }}" value="{{ value[2] }}"></td>
+                <td data-th="phone_num"><input class="{{ value[0] }}" value="{{ value[3] }}"></td>
+
+                <td data-th="privilege">
+                    {% if value[4] == 1 %}
+                    <input type="checkbox" id="radio" name="switch" class="{{ value[0] }}" checked="{{ value[4] }}" />
+                    {% else %}
+                    <input type="checkbox" id="radio" name="switch" class="{{ value[0] }}" />
+                    {% endif %}
+                </td>
+
+                <td data-th="Delete">
+                    <button id="delete">Delete</button>
+                </td>
             </tr>
-            <tr>
-            <td data-th="number">1234</td>
-            <td data-th="user name">Drama</td>
-            <td data-th="Password">wsdfgyuik</td>
-            <td data-th="phone_num">123456789</td>
-            <td data-th="privilege">
-                <input type="checkbox" id="radio" name="switch">
-            </td>
-            <td data-th="Delete">
-                <button id="delete">Delete</button>
-            </td>
-            </tr>
+            {% endfor %}
+
         </table>
         <p>&larr; Some Information Can Add Here. &rarr;</p>
 

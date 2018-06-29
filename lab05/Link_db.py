@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sqlite3,os
 
+# 找到该路径下的sqlite3数据库文件
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 path = os.path.join(BASE_DIR, "easy_education_archive.db")
 #---------------------------------------------全局配置--------------------------------------------#
@@ -11,11 +12,6 @@ class Link_db:
     def __init__(self):
         self.__db = sqlite3.connect(path)
         self.__cursor = self.__db.cursor()
-
-
-    #返回cursor，实际上并没有用到。
-    def GetCursor(self):
-        return self.__db.cursor()
 
     #执行查询的语句，返回多个元组组成的元组。若执行失败则返回bool类型的False
     def select(self,sql):
@@ -51,5 +47,3 @@ class Link_db:
             self.__cursor = self.__db.cursor()
         except:
             print("连接数据库失败")
-
-

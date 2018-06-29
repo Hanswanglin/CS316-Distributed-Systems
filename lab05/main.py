@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for, jsonify
+from flask import Flask, request, render_template, url_for, jsonify, make_response
 from Link_db import Link_db
 
 app = Flask(__name__, static_url_path='/static')
@@ -22,15 +22,18 @@ def login():
 
     db = Link_db()
     if roles == 'Admin':  # 数据库查询验证id和密码
-        sql = "select * from administrator_info where admin_id = \"" + username + "\" and admin_password = \"" + pwd + "\""
+        sql = "select * from administrator_info where admin_id = \"" + username + "\" and admin_password = \"" + \
+              pwd + "\""
         result = db.select(sql)
         if (len(result) == 0):
             return render_template('login.html', message='your username or password is error, please login again!')
         else:
-            return render_template('admin.html')
+            admin_info = admin_info_get()
+            return admin_info
 
     elif roles == 'Teacher':  # 数据库查询验证id和密码
-        sql = "select * from teacher_info where teacher_id = \"" + username + "\" and teacher_password = \"" + pwd + "\""
+        sql = "select * from teacher_info where teacher_id = \"" + username + "\" and teacher_password = \"" + \
+              pwd + "\""
         result = db.select(sql)
         if (len(result) == 0):
             return render_template('login.html', message='your username or password is error, please login again!')
@@ -38,7 +41,8 @@ def login():
             return render_template('teacher.html')
 
     elif roles == 'Student':  # 数据库查询验证id和密码
-        sql = "select * from teacher_info where student_id = \""+ username +"\" and student_password = \"" + pwd +"\""
+        sql = "select * from teacher_info where student_id = \""+ username +"\" and student_password = \"" + \
+              pwd +"\""
         result = db.select(sql)
         if (len(result) == 0):
             return render_template('login.html', message='your username or password is error, please login again!')
@@ -49,27 +53,21 @@ def login():
         return render_template('login.html', message='Please select a role')
 
 # 管理员
-@app.route('/manager/stu_info', methods=['GET'])
-def student_info_get():
-    if request.method == 'GET':
-        db = Link_db()
-        sql = "SELECT * from student_info"
-        result = db.select(sql)
-        print(result)
-        data = {'id': result[0][0], 'password': result[0][1], 'name': result[0][2], 'num': result[0][3], 'privilege': result[0][4]}
+@app.route('/admin', methods=['POST', 'GET'])
+def admin_info_get():
+    db = Link_db()
+    sql1 = "SELECT * from student_info"
+    result1 = db.select(sql1)
+    student_info = {'id': result1[0][0], 'password': result1[0][1], 'name': result1[0][2], 'num': result1[0][3],
+                    'privilege': result1[0][4]}
 
-        return jsonify(data)
+    sql2 = "SELECT * from teacher_info"
+    result2 = db.select(sql2)
+    teacher_info = {'id': result2[0][0], 'password': result2[0][1], 'name': result2[0][2], 'num': result2[0][3],
+                    'privilege': result2[0][4]}
 
-@app.route('/manager/tea_info', methods=['POST'])
-def tea_info_get():
-    if request.method == 'POST':
-        db = Link_db()
-        sql = "SELECT * from teacher_info"
-        result = db.select(sql)
-        data = {'id': result[0][0], 'password': result[1][0], 'name': result[2][0], 'num': result[3][0],
-                'privilege': result[4][0]}
-
-        return jsonify(data)
+    admin_info = make_response(render_template('admin.html'), teacher_info = teacher_info, student_info = student_info)
+    return admin_info
 
 if __name__ == '__main__':
     app.debug = True
