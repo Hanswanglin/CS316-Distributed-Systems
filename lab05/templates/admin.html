@@ -4,6 +4,15 @@
         <title>Administrator</title>
         <link rel="stylesheet" type="text/css" href="../static/css/admin.css">
         <link type="text/javascript" href="../static/js/admin.js">
+        <script type="text/javascript">
+            function showteacher(teacher_id,teacher_name,phone_num,teacher_password){
+                $('.rwd-table').modal('show');
+                $(".number").val(teacher_id);
+                $(".user_name").val(teacher_name);
+                $(".Password").val(teacher_password);
+                $(".phone_num").val(phone_num);
+            }
+        </script>
     </head>
     <body>
         <h1>Management</h1>
@@ -18,7 +27,7 @@
             privilege: 
             <input type="checkbox" id="radio" name="privilege">
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="button" id="add"></button>
+            <button class="button" id="add">ADD</button>
           </form> 
           
         <h1>Teachers</h1>
@@ -29,14 +38,18 @@
             <th>Password</th>
             <th>Phone No.</th>
             <th>Privilege</th>
+            <th>Delete</th>
             </tr>
             <tr>
             <td data-th="number">0000</td>
-            <td data-th="user name">Adventure</td>
+            <td data-th="user_name">Adventure</td>
             <td data-th="Password">wsdfgyuik</td>
             <td data-th="phone_num">123456789</td>
             <td data-th="privilege">
                 <input type="checkbox" id="radio" name="switch">
+            </td>
+            <td data-th="privilege">
+                <button id="delete">Delete</button>
             </td>
             </tr>
         </table>
@@ -48,15 +61,19 @@
             <th>Password</th>
             <th>Phone No.</th>
             <th>Privilege</th>
+            <th>Delete</th>
             </tr>
             </tr>
             <tr>
-            <td data-th="number">5678</td>
-            <td data-th="user name">Candy</td>
-            <td data-th="Password">wsdfgyuik</td>
-            <td data-th="phone_num">123456789</td>
+            <td data-th="number"></td>
+            <td data-th="user_name"></td>
+            <td data-th="Password"></td>
+            <td data-th="phone_num"></td>
             <td data-th="privilege">
                 <input type="checkbox" id="radio" name="switch">
+            </td>
+            <td data-th="Delete">
+                <button id="delete">Delete</button>
             </td>
             </tr>
             <tr>
@@ -67,8 +84,12 @@
             <td data-th="privilege">
                 <input type="checkbox" id="radio" name="switch">
             </td>
+            <td data-th="Delete">
+                <button id="delete">Delete</button>
+            </td>
             </tr>
         </table>
         <p>&larr; Some Information Can Add Here. &rarr;</p>
+
     </body>
 </html>
